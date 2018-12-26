@@ -3,16 +3,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using SmallEshop.Core.Dtos;
+using SmallEshop.Core.Models;
+using SmallEshop.Core.Repositories;
 using SmallEshop.Web.Models;
+using SmallEshop.Web.Services;
 
 namespace SmallEshop.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        private readonly ILogger<HomeController> logger;
+        private readonly IMapper mapper;
+
+        public HomeController(ILogger<HomeController> logger,
+                            IMapper mapper)
         {
-            return View();
+            this.logger = logger;
+            this.mapper = mapper;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+              return View();      
         }
 
         public IActionResult About()
@@ -38,6 +56,16 @@ namespace SmallEshop.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(CookieRequestCultureProvider.DefaultCookieName,
+                                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                            );
+
+            return LocalRedirect(returnUrl);
         }
     }
 }

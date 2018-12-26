@@ -1,0 +1,14 @@
+﻿@model int
+@using Microsoft.AspNetCore.Http.Extensions
+
+@if (@Model > 0)
+{
+    <li>
+        <a asp-controller="Basket" asp-action="Index" asp-route-returnurl="@Context.Request.GetDisplayUrl()">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            <span id="cart-status">
+                @Model
+            </span>
+        </a>
+    </li>
+}

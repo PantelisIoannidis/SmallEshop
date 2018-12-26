@@ -1,0 +1,35 @@
+﻿@model SmallEshop.Web.ViewModels.ItemsListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Http.Extensions
+@inject IViewLocalizer Localizer
+
+@foreach (var item in Model.Items)
+{
+
+    var parms = new Dictionary<string, string>()
+    {
+    { "itemid", @item.ItemId.ToString() },
+    //{ "returnUrl",@Context.Request.Host+@Context.Request.PathBase+@Context.Request.Path},
+    { "returnUrl",@Context.Request.GetDisplayUrl()}
+    };
+
+<div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="thumbnail">
+        <img src="~/images/@item.ItemImages.FirstOrDefault(c=>c.DefaultImage==true).PhotoThumbnailUrl" alt="" />
+        <div class="ThumbnailTitle">
+            <h3 class="pull-right">@item.Price</h3>
+            <h3><a asp-controller="Details" asp-action="Index" asp-all-route-data="parms">@item.ItemName</a></h3>
+            @*asp-route-itemid="@item.ItemId"*@
+            <p>@item.ShortDescription</p>
+        </div>
+        <div class="addToCart">
+            <p class="button">
+                <a class="btn btn-primary" asp-controller="Basket" asp-action="AddItem" asp-all-route-data="parms">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> @Localizer["Add to Cart"]
+                </a>
+            </p>
+        </div>
+    </div>
+
+</div>
+}

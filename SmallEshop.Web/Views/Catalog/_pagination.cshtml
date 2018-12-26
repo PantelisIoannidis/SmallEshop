@@ -1,0 +1,37 @@
+﻿@using Microsoft.Extensions.Localization
+@model SmallEshop.Core.Utilities.Pager
+@inject IStringLocalizer<SharedResources> SharedLocalizer
+
+<div class="pagerstyle text-center pagination-centered">
+    <ul class="pagination pagination-sm">
+        <li class="@(Model.IsFirstPage?"disabled":"")">
+            <a asp-controller="Catalog" asp-action="Index"
+               asp-route-pageidx="@Model.FirstPage">&lt;&lt;</a>
+        </li>
+        <li class="@(Model.HasPreviousPage?"":"disabled")">
+            <a asp-controller="Catalog" asp-action="Index"
+               asp-route-pageidx="@Model.PreviousPage">
+                <span>&lt;</span>
+            </a>
+        </li>
+        @foreach (var pageNumber in Model.NearPages)
+        {
+            <li><a class="@(Model.CurrentPage==pageNumber?"active":"")" asp-controller="Catalog" asp-action="Index" asp-route-pageidx="@pageNumber">@pageNumber</a></li>
+        }
+        <li class="@(Model.HasNextPage?"":"disabled")">
+            <a asp-controller="Catalog" asp-action="Index"
+               asp-route-pageidx="@Model.NextPage">
+                <span>&gt;</span>
+            </a>
+        </li>
+        <li class="@(Model.IsLastPage?"disabled":"")">
+            <a asp-controller="Catalog" asp-action="Index"
+               asp-route-pageidx="@Model.LastPage">
+                <span>&gt;&gt;</span>
+            </a>
+        </li>
+    </ul>
+    <span>
+        @SharedLocalizer["items"] @Model.FirstItemOnPage - @Model.LastItemOnPage @SharedLocalizer["of total"] @Model.TotalItems
+    </span>
+</div>

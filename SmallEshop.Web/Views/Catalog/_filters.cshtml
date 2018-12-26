@@ -1,0 +1,20 @@
+﻿@model SmallEshop.Web.ViewModels.ItemsListViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+
+<div class="filters_section">
+    <div class="container">
+        <form asp-action="Index" asp-controller="Catalog" method="post">
+            <span class="">
+                <label for="@Model.ChoosedBrandId">@Localizer["Brands"]</label>
+                <select asp-for="@Model.ChoosedBrandId" asp-items="@Model.Brands"></select>
+            </span>
+            <span class="">
+                <label for="@Model.ChoosedCategoryId">@Localizer["Category"]</label>
+                <select asp-for="@Model.ChoosedCategoryId" asp-items="@Model.Categories"></select>
+            </span>
+            <input class="btn btn-primary" type="submit" name="applyFilters" value="@Localizer["Apply Filters"]" />
+        </form>
+    </div>
+</div>

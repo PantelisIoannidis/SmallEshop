@@ -3,6 +3,7 @@ for details on configuring this project to bundle and minify static web assets. 
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-image: linear-gradient(white,cyan,white);
 }
 
 /* Wrapping element */
@@ -34,4 +35,25 @@ body {
     .carousel-caption {
         display: none;
     }
+}
+
+/* Custom properties*/
+.thumbnail {
+    background-image: linear-gradient(white,cyan,white);
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.thumbnail > img {
+    max-width: 20em;
+    max-height: 20em;
+    display: block;
+    width: auto;
+    height: 20em;
+}
+
+.filters_section {
+    font-size: 1em;
 }

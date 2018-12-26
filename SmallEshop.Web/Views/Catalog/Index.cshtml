@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@model SmallEshop.Web.ViewModels.ItemsListViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = "Catalog";
+}
+
+
+<div class="row">
+
+    @*<input type="hidden" name="ReturnUrl" id="ReturnUrl" value="@Context.Request.Host@Context.Request.PathBase@Context.Request.Path" />*@
+
+    <partial name="_pagination" for="Pager" />
+
+    <partial name="_filters" />
+
+    <partial name="_item" />
+
+</div>
+

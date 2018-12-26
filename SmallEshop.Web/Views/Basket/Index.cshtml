@@ -1,0 +1,70 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Http.Extensions
+@model SmallEshop.Web.ViewModels.BasketViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Your Basket"];
+}
+
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-8">
+        <h2>@Localizer["Your Basket"]</h2>
+                <div class="table-responsive">
+                    <table class="table">
+                        <tr>
+                            <th>@Localizer["Product"]</th>
+                            <th>@Localizer["Unit Price"]</th>
+                            <th>@Localizer["Quantity"]</th>
+                            <th>@Localizer["Price"]</th>
+                        </tr>
+                        @foreach (var item in Model.Items)
+                        {
+                            var parms = new Dictionary<string, string>()
+                                    {
+                                        { "itemid", @item.Item.ItemId.ToString() },
+                                        { "returnUrl",Model.returnUrl}
+                                    };
+                            <tr>
+                                <td>@item.Item.ItemName</td>
+                                <td>@item.Item.Price</td>
+                                <td>
+                                    @item.Quantity
+                                    <a class="btn-success btn-xs" asp-controller="Basket" asp-action="AddItem" asp-all-route-data="parms">
+                                        <span class="glyphicon glyphicon glyphicon-arrow-up"></span>
+                                    </a>
+                                    <a class="btn-danger btn-xs" asp-controller="Basket" asp-action="RemoveItem" asp-all-route-data="parms">
+                                        <span class="glyphicon glyphicon glyphicon-arrow-down"></span>
+                                    </a>
+                                </td>
+                                <td>@item.TotalPrice</td>
+                            </tr>
+                        }
+                        <tr>
+                            <td></td>
+                            <td>@Localizer["Totals"]:</td>
+                            <td>@Model.TotalQuantity</td>
+                            <td>@Model.TotalBasketPrice</td>
+                        </tr>
+                    </table>
+                </div>
+</div>
+    <div class="col-md-3">
+        <div class="returnUrl  center-block">
+            <p class="button">
+                <a class="btn btn-primary" href="@Model.returnUrl">
+                    <span class="glyphicon glyphicon glyphicon-new-window"></span> @Localizer["Return"]
+                </a>
+            </p>
+        </div>
+        <div class="returnUrl  center-block">
+            <p class="button">
+                <a class="btn btn-primary" href="#">
+                    <span class="glyphicon glyphicon glyphicon-credit-card"></span> @Localizer["Proceed to payment"]
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
