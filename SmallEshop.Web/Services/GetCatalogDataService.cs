@@ -37,6 +37,13 @@ namespace SmallEshop.Web.Services
             this.mapper = mapper;
         }
 
+        public async Task<List<ItemDto>> GetASampleOfItemsASync()
+        {
+            var itemsDb = await itemRepository.GetAllItemsAsync();
+            var items = mapper.Map<List<ItemDto>>(itemsDb);
+            return items;
+        }
+
         public async Task<DetailsViewModel> ItemDetailsAsync(int itemId)
         {
             Expression<Func<Item, bool>> expression = LinqExpressions.GetAnItemById(itemId);
@@ -107,8 +114,5 @@ namespace SmallEshop.Web.Services
 
             return items;
         }
-
-
-
     }
 }

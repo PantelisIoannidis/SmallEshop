@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using SmallEshop.Core.Dtos;
 using SmallEshop.Web.ViewModels;
 
 namespace SmallEshop.Web.Services
 {
     public interface IGetCatalogDataService
     {
+        Task<List<ItemDto>> GetASampleOfItemsASync();
         Task<DetailsViewModel> ItemDetailsAsync(int itemId);
         Task<List<SelectListItem>> PrepareBandsListBoxAsync();
         Task<List<SelectListItem>> PrepareCategoriesListBoxAsync();

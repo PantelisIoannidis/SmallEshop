@@ -19,18 +19,22 @@ namespace SmallEshop.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> logger;
+        private readonly IGetCatalogDataService getCatalogDataService;
         private readonly IMapper mapper;
 
         public HomeController(ILogger<HomeController> logger,
+                            IGetCatalogDataService getCatalogDataService,
                             IMapper mapper)
         {
             this.logger = logger;
+            this.getCatalogDataService = getCatalogDataService;
             this.mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
         {
-              return View();      
+            var items = await getCatalogDataService.GetASampleOfItemsASync();
+            return View(items);      
         }
 
         public IActionResult About()

@@ -1,6 +1,50 @@
-﻿@{
-    ViewData["Title"] = "Index";
+﻿@model List<SmallEshop.Core.Dtos.ItemDto>
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Http.Extensions
+@inject IViewLocalizer Localizer
+@inject IConfigurationVariables confVar
+
+@{
+    ViewData["Title"] = "Our Products";
 }
 
-<h2>Promotions</h2>
+<h2>Our products</h2>
+
+
+<div class="row carousel-holder">
+    <div class="col-md-12">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                @{
+                    int i = 0;
+                    @foreach (var item in Model)
+                    {
+                        <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i++==0?"active":"")"></li>
+                    }
+                }
+            </ol>
+            <div class="carousel-inner">
+                @{
+                    int isActive = 0;
+                    @foreach (var item in Model)
+                    {
+                        <div class="item @(isActive++==0?"active":"")">
+                            <img class="slide-image center-block" src="@confVar.ImagesPath@item.ItemImages.FirstOrDefault().PhotoUrl" alt="">
+                            <div class="carousel-caption">
+                                <h3>@item.ItemName</h3>
+                                <p>@item.ShortDescription</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>
+        </div>
+    </div>
+</div>
 
