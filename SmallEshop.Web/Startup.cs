@@ -71,6 +71,7 @@ namespace SmallEshop.Web
             services.AddScoped<IGetCatalogDataService, GetCatalogDataService>();
             services.AddScoped<IBasket, Basket>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IConfigurationVariables, ConfigurationVariables>();
 
             services.AddLocalization(opts => { opts.ResourcesPath = "Resources"; });
 

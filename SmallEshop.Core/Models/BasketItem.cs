@@ -8,7 +8,6 @@ namespace SmallEshop.Core.Models
     {
         public int BasketItemId { get; set; }
         public string BasketId { get; set; }
-        public string UserId { get; set; }
         public int ItemId { get; set; }
         public Item Item { get; set; }
         public int Quantity { get; set; }

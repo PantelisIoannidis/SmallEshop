@@ -2,82 +2,83 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @using Microsoft.AspNetCore.Http.Extensions
 @inject IViewLocalizer Localizer
+@inject IConfigurationVariables confVar
 @{
     var parms = new Dictionary<string, string>
     ()
-    {
-    { "itemid", @Model.ItemId.ToString() },
-    //{ "returnUrl",@Context.Request.Host+@Context.Request.PathBase+@Context.Request.Path},
-    { "returnUrl",@Context.Request.GetDisplayUrl()}
-    };
+{
+{ "itemid", @Model.ItemId.ToString() },
+//{ "returnUrl",@Context.Request.Host+@Context.Request.PathBase+@Context.Request.Path},
+{ "returnUrl",@Context.Request.GetDisplayUrl()}
+};
 
-    <div class="row">
-        <div class="col-md-2">
+<div class="row">
+    <div class="col-md-2">
 
-        </div>
-        <div class="col-md-6">
-            <div class="row carousel-holder">
-                <div class="col-md-12">
-                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                        <ol class="carousel-indicators">
-                            @{
-                                int i = 0;
-                                @foreach (var image in Model.ItemImages)
-                                {
-                                    <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i++==0?"active":"")"></li>
-                                }
+    </div>
+    <div class="col-md-6">
+        <div class="row carousel-holder">
+            <div class="col-md-12">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        @{
+                            int i = 0;
+                            @foreach (var image in Model.ItemImages)
+                            {
+                                <li data-target="#carousel-example-generic" data-slide-to="@i" class="@(i++==0?"active":"")"></li>
                             }
-                        </ol>
-                        <div class="carousel-inner">
-                            @{
-                                int isActive = 0;
-                                @foreach (var image in Model.ItemImages)
-                                {
-                                    <div class="item @(isActive++==0?"active":"")">
-                                        <img class="slide-image" src="~/images/@image.PhotoUrl" alt="">
-                                    </div>
-                                }
+                        }
+                    </ol>
+                    <div class="carousel-inner">
+                        @{
+                            int isActive = 0;
+                            @foreach (var image in Model.ItemImages)
+                            {
+                                <div class="item @(isActive++==0?"active":"")">
+                                    <img class="slide-image" src="@confVar.ImagesPath@image.PhotoUrl" alt="">
+                                </div>
                             }
-                        </div>
-                        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </a>
-                        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </a>
+                        }
                     </div>
+                    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="ThumbnailTitle">
-                <h3 class="pull-right">@Model.Price</h3>
-                <h3><a href="#">@Model.ItemName</a></h3>
-                <p>@Model.ShortDescription</p>
-            </div>
-
-            <div class="addToCart pull-left">
-                <p class="button">
-                    <a class="btn btn-primary" asp-controller="Basket" asp-action="AddItem" asp-all-route-data="parms">
-                        <span class="glyphicon glyphicon-shopping-cart"></span> @Localizer["Add to Cart"]
-                    </a>
-                </p>
-            </div>
-            <div class="returnUrl  pull-left">
-                <p class="button">
-                    <a class="btn btn-primary" href="@Model.ReturnUrl">
-                        <span class="glyphicon glyphicon glyphicon-new-window"></span> @Localizer["Return to Catalog"]
-                    </a>
-                </p>
-            </div>
+    </div>
+    <div class="col-md-4">
+        <div class="ThumbnailTitle">
+            <h3 class="pull-right">@Model.Price</h3>
+            <h3><a href="#">@Model.ItemName</a></h3>
+            <p>@Model.ShortDescription</p>
         </div>
 
+        <div class="addToCart pull-left">
+            <p class="button">
+                <a class="btn btn-primary" asp-controller="Basket" asp-action="AddItem" asp-all-route-data="parms">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> @Localizer["Add to Cart"]
+                </a>
+            </p>
+        </div>
+        <div class="returnUrl  pull-left">
+            <p class="button">
+                <a class="btn btn-primary" href="@Model.ReturnUrl">
+                    <span class="glyphicon glyphicon glyphicon-new-window"></span> @Localizer["Return to Catalog"]
+                </a>
+            </p>
+        </div>
     </div>
-    <p>
-        @Model.LongDescription
-    </p>
+
+</div>
+<p>
+    @Model.LongDescription
+</p>
 
 }
-    @*<img src="~/images/@Model.ItemImages.FirstOrDefault(c=>c.DefaultImage==true).PhotoUrl" alt="" />*@
+@*<img src="~/images/@Model.ItemImages.FirstOrDefault(c=>c.DefaultImage==true).PhotoUrl" alt="" />*@
 
 
