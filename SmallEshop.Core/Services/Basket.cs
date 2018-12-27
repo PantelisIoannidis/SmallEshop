@@ -99,19 +99,24 @@ namespace SmallEshop.Core.Services
             }
         }
 
-        public List<BasketItem> GetBasketItems(string basketId)
+        public Task<List<BasketItem>> GetBasketItemsAsync(string basketId)
         {
-            return basketItemRepository.GetBasketItems(basketId);
+            return basketItemRepository.GetBasketItemsAsync(basketId);
         }
 
-        public int GetTotalQuantity(string basketId)
+        public Task<int> GetTotalQuantityAsync(string basketId)
         {
-            return GetBasketItems(basketId).Sum(x => x.Quantity);
+            return basketItemRepository.GetBasketCountItemsAsync(basketId);
         }
 
         public async Task<int> ClearBasketAsync(string basketId)
         {          
             return await basketItemRepository.DeleteWhereAsync(x => x.BasketId == basketId);
+        }
+
+        public async Task MigrateBasket(string currentBasketId, string newBasketId)
+        {
+            await basketItemRepository.MigrateBasketItems(currentBasketId, newBasketId);
         }
     }
 }

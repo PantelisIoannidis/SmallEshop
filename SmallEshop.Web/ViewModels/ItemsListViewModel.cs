@@ -10,7 +10,7 @@ namespace SmallEshop.Web.ViewModels
 {
     public class ItemsListViewModel
     {
-        public List<ItemDtos> Items { get; set; }
+        public List<ItemDto> Items { get; set; }
         public List<SelectListItem> Brands { get; set; }
         public List<SelectListItem> Categories { get; set; }
 

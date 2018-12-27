@@ -8,6 +8,7 @@ namespace SmallEshop.Web.Services
     {
         IBasket Basket { get; set; }
         string BasketId { get; set; }
+        string UserId { get; set; }
         List<BasketItem> BasketItems { get; set; }
     }
 }

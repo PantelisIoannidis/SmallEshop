@@ -7,6 +7,7 @@ namespace SmallEshop.Web.Models
 {
     public static class AppConstants
     {
-        public const int ItemsPerPage = 6; 
+        public const int ItemsPerPage = 6;
+        public const string BasketId = "BasketId";
     }
 }

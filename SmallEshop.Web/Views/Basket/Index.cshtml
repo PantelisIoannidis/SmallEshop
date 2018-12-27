@@ -58,7 +58,14 @@
                 </a>
             </p>
         </div>
-        <div class="returnUrl  center-block">
+        <div class="center-block">
+            <p class="button">
+                <a class="btn btn-primary" asp-controller="Basket" asp-action="ClearBasket">
+                    <span class="glyphicon glyphicon glyphicon-remove"></span> @Localizer["Clear Basket"]
+                </a>
+            </p>
+        </div>
+        <div class="center-block">
             <p class="button">
                 <a class="btn btn-primary" href="#">
                     <span class="glyphicon glyphicon glyphicon-credit-card"></span> @Localizer["Proceed to payment"]

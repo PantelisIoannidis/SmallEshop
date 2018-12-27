@@ -4,11 +4,11 @@ using System.Text;
 
 namespace SmallEshop.Core.Dtos
 {
-    public class ItemDtos
+    public class ItemDto
     {
-        public ItemDtos()
+        public ItemDto()
         {
-            ItemImages = new List<ItemImageDtos>();
+            ItemImages = new List<ItemImageDto>();
         }
 
         public int ItemId { get; set; }
@@ -21,13 +21,13 @@ namespace SmallEshop.Core.Dtos
         public bool IsAvailable { get; set; }
 
         public int CategoryId { get; set; }
-        public CategoryDtos Category { get; set; }
+        public CategoryDto Category { get; set; }
 
         public int BrandId { get; set; }
-        public BrandDtos Brand { get; set; }
+        public BrandDto Brand { get; set; }
 
         public int ItemImagesId { get; set; }
-        public List<ItemImageDtos> ItemImages { get; set; }
+        public List<ItemImageDto> ItemImages { get; set; }
 
     }
 }

@@ -27,8 +27,8 @@ namespace SmallEshop.Web.Controllers
         }
         public async Task<IActionResult> Index(string returnUrl="#")
         {
-            var basketDb = basketService.Basket
-                        .GetBasketItems(basketService.BasketId);
+            var basketDb = await basketService.Basket
+                        .GetBasketItemsAsync(basketService.BasketId);
 
             var items = mapper.Map<List<BasketItemViewModel>>(basketDb);
             var basket = new BasketViewModel()
@@ -55,5 +55,14 @@ namespace SmallEshop.Web.Controllers
 
             return RedirectToAction(nameof(BasketController.Index), new { returnUrl = returnUrl });
         }
+
+        public async Task<IActionResult> ClearBasket(string returnUrl = "#")
+        {
+           await basketService.Basket
+                .ClearBasketAsync(basketService.BasketId);
+
+            return RedirectToAction(nameof(BasketController.Index), new { returnUrl = returnUrl });
+        }
+
     }
 }

@@ -16,6 +16,8 @@ namespace SmallEshop.Infrastructure
         public DbSet<Brand> Brands { get; set; }
         public DbSet<ItemImage> ItemImages { get; set; }
         public DbSet<BasketItem> BasketItems { get; set; }
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -29,6 +31,7 @@ namespace SmallEshop.Infrastructure
             builder.ApplyConfiguration(new BrandConfiguration());
             builder.ApplyConfiguration(new ItemImageConfiguration());
             builder.ApplyConfiguration(new BasketItemConfiguration());
+            builder.ApplyConfiguration(new AddressConfiguration());
 
             base.OnModelCreating(builder);
         }

@@ -22,6 +22,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
 using SmallEshop.Core.Services;
+using Microsoft.Extensions.Logging;
 
 namespace SmallEshop.Web
 {
@@ -110,7 +111,7 @@ namespace SmallEshop.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, 
+        public void Configure(IApplicationBuilder app,
             IHostingEnvironment env,
             DbInit dbInit)
         {
@@ -124,7 +125,6 @@ namespace SmallEshop.Web
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

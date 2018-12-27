@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using SmallEshop.Web.Services;
 using System;
 using System.Collections.Generic;
@@ -10,18 +11,25 @@ namespace SmallEshop.Web.Components
     public class BasketSummary : ViewComponent
     {
         private readonly IBasketService basketService;
+        private readonly ILogger<BasketSummary> logger;
 
-        public BasketSummary(IBasketService basketService)
+        public BasketSummary(IBasketService basketService,
+                        ILogger<BasketSummary> logger)
         {
             this.basketService = basketService;
+            this.logger = logger;
         }
 
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var itemsCount = basketService
+            logger.LogInformation("- Begin- InvokeAsync "+DateTime.Now.ToString());
+            var itemsCount =
+            await basketService
                         .Basket
-                        .GetTotalQuantity(basketService.BasketId);
+                        .GetTotalQuantityAsync(basketService.BasketId);
+            logger.LogInformation("- End  - InvokeAsync " + DateTime.Now.ToString());
             return View(itemsCount);
+           
         }
     }
 }

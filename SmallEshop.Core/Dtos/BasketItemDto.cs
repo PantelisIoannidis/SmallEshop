@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmallEshop.Core.Dtos
 {
-    public class BasketItemDtos
+    public class BasketItemDto
     {
         public int BasketItemId { get; set; }
         public Item Item { get; set; }

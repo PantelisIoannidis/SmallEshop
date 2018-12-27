@@ -4,16 +4,16 @@ using System.Text;
 
 namespace SmallEshop.Core.Dtos
 {
-    public class CategoryDtos
+    public class CategoryDto
     {
-        public CategoryDtos()
+        public CategoryDto()
         {
-            Items = new List<ItemDtos>();
+            Items = new List<ItemDto>();
         }
 
         public int CategoryId { get; set; }
         public string CategoryName { get; set; }
 
-        public List<ItemDtos> Items { get; set; }
+        public List<ItemDto> Items { get; set; }
     }
 }

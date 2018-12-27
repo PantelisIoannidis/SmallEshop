@@ -56,7 +56,7 @@ namespace SmallEshop.Web.Services
             List<Item> items = await itemRepository.GetAllItemsWhereAsync(expression, pager.Skip, pageSize);
 
             var model = new ItemsListViewModel() {
-                Items = mapper.Map<List<ItemDtos>>(items),
+                Items = mapper.Map<List<ItemDto>>(items),
                 Brands = await PrepareBandsListBoxAsync(),
                 Categories = await PrepareCategoriesListBoxAsync(),
                 Pager = pager,

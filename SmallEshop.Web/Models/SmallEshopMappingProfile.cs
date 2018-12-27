@@ -13,23 +13,23 @@ namespace SmallEshop.Web.Models
     {
         public SmallEshopMappingProfile()
         {
-            CreateMap<Brand, BrandDtos>()
+            CreateMap<Brand, BrandDto>()
                 .ReverseMap();
 
-            CreateMap<Category, CategoryDtos>()
+            CreateMap<Category, CategoryDto>()
                 .ReverseMap();
 
-            CreateMap<ItemImage, ItemImageDtos>()
+            CreateMap<ItemImage, ItemImageDto>()
                 .ReverseMap();
 
-            CreateMap<Item, ItemDtos>()
+            CreateMap<Item, ItemDto>()
                 .ReverseMap();
             //.ForMember(dest => dest.CatalogBrandId, opt => opt.Ignore());
 
             CreateMap<Item, DetailsViewModel>()
                 .ReverseMap();
 
-            CreateMap<BasketItem, BasketItemDtos>()
+            CreateMap<BasketItem, BasketItemDto>()
                 .ReverseMap();
 
             CreateMap<BasketItem, BasketItemViewModel>()

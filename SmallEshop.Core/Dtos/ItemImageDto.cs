@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmallEshop.Core.Dtos
 {
-    public class ItemImageDtos
+    public class ItemImageDto
     {
         public int ItemImagesId { get; set; }
         public int ItemId { get; set; }

@@ -9,10 +9,12 @@ namespace SmallEshop.Web.ViewModels
     {
         public List<BasketItemViewModel> Items { get; set; }
         public string returnUrl { get; set; }
+        public decimal ShippingCost { get; set; }
+        public decimal Discount { get; set; }
         public decimal TotalBasketPrice
         {
             get {
-                return Items.Sum(x => x.TotalPrice);
+                return (Items.Sum(x => x.TotalPrice) + ShippingCost-Discount);
             }
         }
         public int TotalQuantity
