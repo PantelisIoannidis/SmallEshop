@@ -123,8 +123,8 @@
   <data name="Price" xml:space="preserve">
     <value>Price</value>
   </data>
-  <data name="Proceed to payment" xml:space="preserve">
-    <value>Proceed to payment</value>
+  <data name="Proceed with order" xml:space="preserve">
+    <value>Proceed with order</value>
   </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>

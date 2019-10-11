@@ -26,6 +26,13 @@ namespace SmallEshop.Core.Models
         public int BrandId { get; set; }
         public Brand Brand { get; set; }
 
+        public float? Width { get; set; }
+        public float? Height { get; set; }
+        public float? Length { get; set; }
+        public int? PackageType { get; set; }
+        public float Weight { get; set; }
+        public int WarehouseAddressId{ get; set; }
+
         public int ItemImagesId { get; set; }
         public List<ItemImage> ItemImages { get; set; }
 

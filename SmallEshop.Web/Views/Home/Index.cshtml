@@ -28,13 +28,13 @@
                     int isActive = 0;
                     @foreach (var item in Model)
                     {
-                        <div class="item @(isActive++==0?"active":"")">
-                            <img class="slide-image center-block" src="@confVar.ImagesPath@item.ItemImages.FirstOrDefault().PhotoUrl" alt="">
-                            <div class="carousel-caption">
-                                <h3>@item.ItemName</h3>
-                                <p>@item.ShortDescription</p>
-                            </div>
-                        </div>
+                <div class="item @(isActive++==0?"active":"")">
+                    <div class="carousel-caption">
+                        <h3>@item.ItemName</h3>
+                        <p>@item.ShortDescription</p>
+                    </div>
+                    <img class="slide-image center-block" src="@confVar.ImagesPath@item.ItemImages.FirstOrDefault().PhotoUrl" alt="">
+                </div>
                     }
                 }
             </div>

@@ -1,4 +1,5 @@
-﻿using SmallEshop.Core.Models;
+﻿using Microsoft.Extensions.Logging;
+using SmallEshop.Core.Models;
 using SmallEshop.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -11,12 +12,15 @@ namespace SmallEshop.Core.Services
 {
     public class Basket : IBasket
     {
+        private readonly ILogger<Basket> logger;
         private readonly IBasketItemRepository basketItemRepository;
         private readonly IItemRepository itemRepository;
 
-        public Basket(IBasketItemRepository basketItemRepository,
+        public Basket(ILogger<Basket> logger,
+                        IBasketItemRepository basketItemRepository,
                         IItemRepository itemRepository)
         {
+            this.logger = logger;
             this.basketItemRepository = basketItemRepository;
             this.itemRepository = itemRepository;
         }

@@ -68,6 +68,8 @@ namespace SmallEshop.Web
             services.AddScoped<IBrandRepository, BrandRepository>();
             services.AddScoped<IItemRepository, ItemRepository>();
             services.AddScoped<IBasketItemRepository, BasketItemRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<IGetCatalogDataService, GetCatalogDataService>();
             services.AddScoped<IBasket, Basket>();
             services.AddScoped<IBasketService, BasketService>();
